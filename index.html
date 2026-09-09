@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="tracker">
+        <h2>Expense Tracker</h2>
+        <div class="balance">
+            <span>TOTAL BALANCE</span>
+            <div id="total-balance">CFA 0</div>
+        </div>
+        <div class="overview">
+            <div class="card income-card">
+                <span>INCOME</span>
+                <div id="total-income" class="value text-green">CFA 0</div>
+            </div>
+            <div class="card expense-card">
+                <span>EXPENSE</span>
+                <div id="total-expenSE" class="value text-red">CFA 0</div>
+            </div>
+
+        </div>
+        <div class="display-box">
+            <p id="data-msg"><i class="fa-solid fa-chart-pie"></i> No data to display yet.</p>
+            <div id="chart-box" class="hidden">
+                <div id="pie-chart" class="pie-chart"></div>
+                <div class="legend">
+                    <div><span class="dot bg-green"></span> Income</div>
+                    <div><span class="dot bg-red"></span> Expenses</div>
+                </div>
+            </div>
+        </div>
+        <div class="section-label"><i class="fa-solid fa-history"></i> HISTORY</div>
+        <div class="history-box">
+            <p id="history-msg">No transactions to show.</p>
+            <ul id="history-list"></ul>
+        </div>
+         <div class="section-label"><i class="fa-solid fa-plus"></i> ADD TRANSACTION</div>
+        <form id="transaction-form" class="form-box">
+            <div class="input-icon">
+                <i class="fa-solid fa-pen-to-square input-icon"></i>
+                <input type="text" id="description" placeholder="Description " required>
+            </div>
+            
+            <div class="input-icon">
+                <i class="fa-solid fa-money-bill-wave input-icon"></i>
+                <input type="number" id="amount" placeholder="Amount " required>
+            </div>
+            
+            <button type="submit"><i class="fa-solid fa-circle-check"></i> Add Transaction</button>
+        </form>
+    </div>
+</body>
+
+</html>
