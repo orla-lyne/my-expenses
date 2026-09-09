@@ -3,72 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
-    <!-- Font Awesome Link for Icons -->
-    <link rel="stylesheet" href="https://cloudflare.com"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css" />
+    <title>Financial Dashboard</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="tracker">
-        <h2 class="title">Expense Tracker</h2>
-        
-        <!-- Balance Component -->
-        <div class="balance">
-            <span>TOTAL BALANCE</span>
-            <div id="total-balance" class="value">CFA 0</div>
+    <h1>Expense Tracker</h1>
+
+    <div class="transactions">
+        <div class="card income">
+            <h3>Total Income</h3>
+            <div id="totalIncome" class="amount">$0.00</div>
         </div>
-        
-        <!-- Overview Grid Rows -->
-        <div class="overview">
-            <div class="card income-card">
-                <span>INCOME</span>
-                <div id="total-income" class="value text-green">CFA 0</div>
+
+        <div class="card expense">
+            <h3>Total Expenses</h3>
+            <div id="totalExpenses" class="amount">$0.00</div>
+        </div>
+
+        <div id="balanceCard" class="card balance">
+            <h3>Total Balance</h3>
+            <div id="totalBalance" class="amount">$0.00</div>
+        </div>
+    </div>
+
+    <div class="dashboard-body">
+        <div class="left">
+            <div class="panel">
+                <h2>Add New Transaction</h2>
+                <form id="txForm">
+                    <div class="form-group">
+                        <label for="desc">Description</label>
+                        <input type="text" id="desc" placeholder="" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">Amount ($)</label>
+                        <input type="number" id="amount" step="0.01" min="0.01" placeholder="0.00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type">Transaction Type</label>
+                        <select id="type" required>
+                            <option value="income">Income</option>
+                            <option value="expense">Expense</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn">Save Transaction</button>
+                </form>
             </div>
-            <div class="card expense-card">
-                <span>EXPENSE</span>
-                <div id="total-expenSE" class="value text-red">CFA 0</div>
+
+            <div class="panel">
+                <h2>Transaction History</h2>
+                <ul id="historyList" class="history-list"></ul>
             </div>
         </div>
 
-        <!-- Pie Chart Display Box -->
-        <div class="display-box">
-            <p id="data-msg">No data to display yet.</p>
-            <div id="chart-box" class="hidden">
-                <div id="pie-chart" class="pie-chart"></div>
-                <div class="legend">
-                    <div><span class="dot bg-green"></span> Income</div>
-                    <div><span class="dot bg-red"></span> Expenses</div>
-                </div>
+        <div class="panel chart-panel">
+            <h2>Transactions graph</h2>
+            <div class="chart-box">
+                <canvas id="pieChart" width="260" height="260"></canvas>
+                <ul id="legend" class="legend"></ul>
             </div>
         </div>
-
-        <!-- History Display Area -->
-        <div class="section-label">HISTORY</div>
-        <div class="history-box">
-            <p id="history-msg">No transactions to show.</p>
-            <ul id="history-list"></ul>
-        </div>
-
-        <!-- Input Transaction Interaction Form -->
-        <div class="section-label"><i class="fa-solid fa-plus"></i> ADD TRANSACTION</div>
-        <form id="transaction-form" class="form-box">
-            <div class="input-group-wrapper">
-                <i class="fa-solid fa-pen-to-square input-icon"></i>
-                <input type="text" id="description" placeholder="Description" required>
-            </div>
-            
-            <div class="input-group-wrapper">
-                <i class="fa-solid fa-money-bill-wave input-icon"></i>
-                <input type="number" id="amount" placeholder="Amount" required>
-            </div>
-            
-            <button type="submit"><i class="fa-solid fa-circle-check"></i> Add Transaction</button>
-        </form>
     </div>
 
     <script src="script.js"></script>
-</body> 
+</body>
 </html>
