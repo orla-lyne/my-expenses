@@ -56,11 +56,8 @@ h2 {
     margin-bottom: 8px;
 }
 
-
 .income { border-left-color: #10b981; }
-
 .expense { border-left-color: #ef4444; }
-
 .balance { border-left-color: #3b82f6; }
 .positive { border-left-color: #10b981; }
 .negative { border-left-color: #ef4444; }
@@ -74,7 +71,7 @@ h2 {
     max-width: 1100px;
 }
 
-.left{
+.left {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -82,7 +79,7 @@ h2 {
 
 @media (max-width: 850px) {
     .dashboard-body { grid-template-columns: 1fr; }
-    .metrics-grid { flex-direction: column; gap: 15px; }
+    .transactions { flex-direction: column; gap: 15px; }
 }
 
 .panel {
@@ -165,6 +162,24 @@ h2 {
     flex-direction: column;
     align-items: center;
     gap: 25px;
+    min-height: 260px;
+    justify-content: center;
+}
+
+.chart-placeholder {
+    display: none;
+    color: #94a3b8;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.chart-panel.empty #pieChart,
+.chart-panel.empty .legend {
+    display: none;
+}
+
+.chart-panel.empty .chart-placeholder {
+    display: block;
 }
 
 .legend {

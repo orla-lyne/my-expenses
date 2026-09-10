@@ -1,14 +1,14 @@
 let totalIncome = 0, totalExpenses = 0;
-const history = [];
+const historyLog = [];
 
 const canvas = document.getElementById("pieChart");
 const ctx = canvas.getContext("2d");
 const legend = document.getElementById("legend");
+const chartPanel = document.getElementById("chartPanel");
 const incView = document.getElementById("totalIncome");
 const expView = document.getElementById("totalExpenses");
 const balView = document.getElementById("totalBalance");
 const balCard = document.getElementById("balanceCard");
-const balBadge = document.getElementById("balanceBadge");
 const txForm = document.getElementById("txForm");
 const historyList = document.getElementById("historyList");
 
@@ -26,11 +26,10 @@ function updateUI() {
     balView.textContent = fmt(balance);
 
     balCard.className = "card balance " + (balance > 0 ? "positive" : balance < 0 ? "negative" : "");
-    balBadge.textContent = balance > 0 ? "Net Surplus" : balance < 0 ? "Net Deficit" : "Net Balanced";
 
-    historyList.innerHTML = history.length === 0 ? 
+    historyList.innerHTML = historyLog.length === 0 ? 
         `<li class="history-item" style="color:#94a3b8">No transactions added yet.</li>` : 
-        history.slice().reverse().map(tx => `
+        historyLog.slice().reverse().map(tx => `
             <li class="history-item ${tx.type}">
                 <span>${tx.desc}</span>
                 <span class="item-amt">${tx.type === 'income' ? '+' : '-'}${fmt(tx.amount)}</span>
@@ -41,12 +40,10 @@ function updateUI() {
     legend.innerHTML = "";
 
     if (volume === 0) {
-        ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2, (canvas.width / 2) - 10, 0, 2 * Math.PI);
-        ctx.fillStyle = "#e2e8f0";
-        ctx.fill();
-        legend.innerHTML = `<li class="legend-item" style="color:#94a3b8">No entries to display charts.</li>`;
+        chartPanel.classList.add("empty");
         return;
+    } else {
+        chartPanel.classList.remove("empty");
     }
 
     const data = [
@@ -93,7 +90,7 @@ txForm.addEventListener("submit", (e) => {
     if (type === "income") totalIncome += amount;
     else totalExpenses += amount;
 
-    history.push({ desc, amount, type });
+    historyLog.push({ desc, amount, type });
     updateUI();
     txForm.reset();
 });
